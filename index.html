@@ -67,7 +67,7 @@
   <p>
     1. Data loaded from UCI, scaled with StandardScaler (zero mean, unit variance).<br>
     2. 80/20 train/test split with random_state=42.<br>
-    3. PyTorch DNN trained 150 epochs with AdamW + CosineAnnealingLR.<br>
+    3. PyTorch  trained 150 epochs with AdamW + CosineAnnealingLR.<br>
     4. Exported to ONNX using torch.onnx.export() at opset 11.<br>
     5. Browser loads the .onnx file with ONNX Runtime Web (WebAssembly).<br>
     6. User inputs are standardized with saved scaler params, fed to model, output clamped to [3, 10].
@@ -102,11 +102,11 @@ let session = null, useSim = false;
 async function loadModel() {
   try {
     ort.env.wasm.wasmPaths = 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.17.1/dist/';
-    session = await ort.InferenceSession.create('./wine_quality_dnn.onnx');
+    session = await ort.InferenceSession.create('./wine_quality_small.onnx');
     document.getElementById('status').textContent = 'Model loaded.';
   } catch(e) {
     useSim = true;
-    document.getElementById('status').textContent = 'wine_quality_dnn.onnx not found — running simulation for demo purposes.';
+    document.getElementById('status').textContent = 'wine_quality_small.onnx not found — running simulation for demo purposes.';
   }
   document.getElementById('predict-btn').disabled = false;
 }

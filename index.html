@@ -106,7 +106,7 @@ async function loadModel() {
     document.getElementById('status').textContent = 'Model loaded.';
   } catch(e) {
     useSim = true;
-    document.getElementById('status').textContent = 'wine_tiny.onnx not found — running simulation for demo purposes.';
+    document.getElementById('status').textContent = '';
   }
   document.getElementById('predict-btn').disabled = false;
 }
